@@ -7,7 +7,7 @@ import { defineConfig, fontProviders } from 'astro/config';
 // https://astro.build/config
 export default defineConfig({
   // 部署时改成你自己的站点` _TODO
-  site: 'https://example.com',
+  site: 'https://yz-blog.pages.dev',
   integrations: [mdx(), sitemap()],
   experimental: {
     fonts: [
