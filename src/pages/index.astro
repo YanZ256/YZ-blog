@@ -1,0 +1,39 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+---
+
+<!doctype html>
+<html lang="zh">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>👋 你好，欢迎来到我的博客</h1>
+			<p>
+				这里是我用 <a href="https://astro.build/">Astro</a> 搭建的个人博客，
+				用来记录学习笔记、技术思考和一些日常。
+			</p>
+			<p>
+				文章都用 Markdown 写在 <code>src/content/blog/</code> 目录下，
+				构建后会自动生成对应的页面，并带上 RSS 订阅和站点地图。
+			</p>
+			<p>想快速上手，可以从这几件事开始：</p>
+			<ul>
+				<li>在 <code>src/pages/index.astro</code> 修改这个首页</li>
+				<li>在 <code>src/consts.ts</code> 修改站点标题和描述</li>
+				<li>在 <code>src/components/Header.astro</code> 调整导航栏</li>
+				<li>在 <code>src/components/Footer.astro</code> 写上你的名字</li>
+				<li>在 <code>src/content/blog/</code> 新建 <code>.md</code> 文件发布文章</li>
+			</ul>
+			<p>
+				点上方的「Blog」可以查看文章列表。祝你写得开心！
+			</p>
+		</main>
+		<Footer />
+	</body>
+</html>
