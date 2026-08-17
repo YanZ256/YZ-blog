@@ -4,14 +4,14 @@ interface Props {
 }
 
 const { date } = Astro.props;
+
+// 以北京时间（Asia/Shanghai）格式化文章日期，输出中文格式，如「2026年8月14日」
+const formatted = date.toLocaleDateString('zh-CN', {
+	timeZone: 'Asia/Shanghai',
+	year: 'numeric',
+	month: 'long',
+	day: 'numeric',
+});
 ---
 
-<time datetime={date.toISOString()}>
-	{
-		date.toLocaleDateString('en-us', {
-			year: 'numeric',
-			month: 'short',
-			day: 'numeric',
-		})
-	}
-</time>
+<time datetime={date.toISOString()}>{formatted}</time>
