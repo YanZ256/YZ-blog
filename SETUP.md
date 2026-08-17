@@ -2,7 +2,7 @@
 
 本文记录本博客从零搭建到上线的完整流程，方便日后维护、迁移或重建。
 
-- 本地项目目录：`/home/zy63/Documents/BLOG`
+- 本地项目目录：`~/blog`
 - GitHub 仓库：<https://github.com/YanZ256/YZ-blog>
 - 线上地址：<https://yz-blog.pages.dev>
 - 技术栈：Astro 5（静态站点生成）+ Cloudflare Pages（托管 + 全球 CDN + 自动 HTTPS）
@@ -52,7 +52,7 @@ git --version
 用 `giget` 直接拉取官方 blog 示例到目标目录（比走交互式 `npm create astro` 更稳定）：
 
 ```bash
-npx --yes giget@latest github:withastro/astro/examples/blog /home/zy63/Documents/BLOG --force
+npx --yes giget@latest github:withastro/astro/examples/blog ~/blog --force
 ```
 
 > 注意：访问 GitHub 较慢时，这一步可能耗时较久，耐心等待即可。
@@ -86,13 +86,13 @@ npx --yes giget@latest github:withastro/astro/examples/blog /home/zy63/Documents
 ### 3. 安装依赖
 
 ```bash
-npm install --prefix /home/zy63/Documents/BLOG
+npm install --prefix ~/blog
 ```
 
 验证 Astro 版本：
 
 ```bash
-/home/zy63/Documents/BLOG/node_modules/.bin/astro --version
+~/blog/node_modules/.bin/astro --version
 # 期望输出 astro v5.x
 ```
 
@@ -165,7 +165,7 @@ export default defineConfig({
 ### 7. 本地构建验证
 
 ```bash
-npm run build --prefix /home/zy63/Documents/BLOG
+npm run build --prefix ~/blog
 ```
 
 看到 `[build] Complete!` 即成功，产物在 `dist/`。
@@ -173,7 +173,7 @@ npm run build --prefix /home/zy63/Documents/BLOG
 ### 8. 本地预览
 
 ```bash
-cd /home/zy63/Documents/BLOG
+cd ~/blog
 npm run preview   # 静态预览已构建的 dist，不监听文件
 # 打开 http://localhost:4321/
 ```
@@ -204,7 +204,7 @@ npm run preview   # 静态预览已构建的 dist，不监听文件
 ### 2. 本地关联并推送
 
 ```bash
-cd /home/zy63/Documents/BLOG
+cd ~/blog
 git init -b main            # 若尚未初始化
 git add -A
 git commit -m "init: Astro blog scaffold with Chinese localization"
@@ -276,7 +276,7 @@ Cloudflare 检测到 push 会**自动重新部署**。
 2. 推送即上线：
 
    ```bash
-   cd /home/zy63/Documents/BLOG
+   cd ~/blog
    git add -A
    git commit -m "post: 新文章标题"
    git push

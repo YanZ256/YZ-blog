@@ -9,19 +9,17 @@ import Clock from '../components/Clock.astro';
 	description="关于这个博客和我自己的一点介绍。"
 	pubDate={new Date('August 14 2026')}
 	heroImage={AboutHeroImage}
+	hideDate={true}
 >
 	<p>
-		你好，欢迎来到我的博客。这里主要记录我在学习、工作和生活中的一些思考与笔记。
+		你好，欢迎来到我的博客。这里主要记录我在学习、工作和生活中的一些思考与笔记。如果你对我写的东西感兴趣，欢迎常来看看。有什么想交流的，也可以通过页面上的链接找到我。
 	</p>
 
-	<p>
-		这个站点用 <a href="https://astro.build/">Astro</a> 搭建，托管在 Cloudflare Pages 上，
-		内容都用 Markdown 书写，构建后生成纯静态页面。
-	</p>
-
-	<p>当前北京时间：<Clock /></p>
-
-	<p>
-		如果你对我写的东西感兴趣，欢迎常来看看。有什么想交流的，也可以通过页面上的链接找到我。
-	</p>
+	<p class="clock-line"><Clock /></p>
 </Layout>
+
+<style>
+	.clock-line {
+		text-align: center;
+	}
+</style>

@@ -1,36 +1,36 @@
 ---
 // 实时北京时间时钟：客户端每秒刷新，时区固定 Asia/Shanghai，
 // 无论访客本地时区如何，显示的都是北京时间。
+// 使用 is:inline 让脚本原样输出，避免在 layout slot 嵌套场景下的打包问题。
 ---
 
 <span class="beijing-clock" data-beijing-clock aria-live="polite">北京时间 --</span>
 
-<script>
-	function formatBeijing() {
-		const parts = new Intl.DateTimeFormat('zh-CN', {
-			timeZone: 'Asia/Shanghai',
-			year: 'numeric',
-			month: '2-digit',
-			day: '2-digit',
-			hour: '2-digit',
-			minute: '2-digit',
-			second: '2-digit',
-			hourCycle: 'h23',
-		}).formatToParts(new Date());
-		const m = {};
-		for (const p of parts) m[p.type] = p.value;
-		return `北京时间 ${m.year}-${m.month}-${m.day} ${m.hour}:${m.minute}:${m.second}`;
-	}
-
-	function tick() {
-		const text = formatBeijing();
-		document.querySelectorAll('[data-beijing-clock]').forEach((el) => {
-			el.textContent = text;
-		});
-	}
-
-	tick();
-	setInterval(tick, 1000);
+<script is:inline>
+	(function () {
+		function formatBeijing() {
+			var parts = new Intl.DateTimeFormat('zh-CN', {
+				timeZone: 'Asia/Shanghai',
+				year: 'numeric',
+				month: '2-digit',
+				day: '2-digit',
+				hour: '2-digit',
+				minute: '2-digit',
+				second: '2-digit',
+				hourCycle: 'h23',
+			}).formatToParts(new Date());
+			var m = {};
+			for (var i = 0; i < parts.length; i++) m[parts[i].type] = parts[i].value;
+			return '北京时间 ' + m.year + '-' + m.month + '-' + m.day + ' ' + m.hour + ':' + m.minute + ':' + m.second;
+		}
+		function tick() {
+			var text = formatBeijing();
+			var els = document.querySelectorAll('[data-beijing-clock]');
+			for (var i = 0; i < els.length; i++) els[i].textContent = text;
+		}
+		tick();
+		setInterval(tick, 1000);
+	})();
 </script>
 
 <style>
