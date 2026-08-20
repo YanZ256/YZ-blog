@@ -1,5 +1,4 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
 import Layout from '../layouts/BlogPost.astro';
 import Clock from '../components/Clock.astro';
 ---
@@ -8,7 +7,6 @@ import Clock from '../components/Clock.astro';
 	title="关于我"
 	description="关于这个博客和我自己的一点介绍。"
 	pubDate={new Date('August 14 2026')}
-	heroImage={AboutHeroImage}
 	hideDate={true}
 >
 	<p>
@@ -20,6 +18,7 @@ import Clock from '../components/Clock.astro';
 
 <style>
 	.clock-line {
+		margin-top: 3em;
 		text-align: center;
 	}
 </style>

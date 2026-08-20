@@ -9,6 +9,15 @@ export default defineConfig({
   // 部署时改成你自己的站点` _TODO
   site: 'https://yz-blog.pages.dev',
   integrations: [mdx(), sitemap()],
+  markdown: {
+    shikiConfig: {
+      themes: {
+        light: 'github-light',
+        dark: 'github-dark-dimmed',
+      },
+      wrap: false,
+    },
+  },
   experimental: {
     fonts: [
       {

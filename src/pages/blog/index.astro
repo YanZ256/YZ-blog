@@ -1,8 +1,8 @@
 ---
-import { Image } from 'astro:assets';
 import { getCollection } from 'astro:content';
 import BaseHead from '../../components/BaseHead.astro';
 import Footer from '../../components/Footer.astro';
+import FormattedDate from '../../components/FormattedDate.astro';
 import Header from '../../components/Header.astro';
 import Clock from '../../components/Clock.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../../consts';
@@ -17,93 +17,75 @@ const posts = (await getCollection('blog')).sort(
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
-			main {
-				width: 960px;
-			}
-			.page-clock {
-				text-align: center;
-				margin-top: 3rem;
-			}
-			ul {
-				display: flex;
-				flex-wrap: wrap;
-				gap: 2rem;
-				list-style-type: none;
+			.post-list {
+				list-style: none;
 				margin: 0;
 				padding: 0;
 			}
-			ul li {
-				width: calc(50% - 1rem);
+			.post-list li {
+				margin: 0 0 2.2em;
 			}
-			ul li * {
+			.post-list a {
 				text-decoration: none;
-				transition: 0.2s ease;
-			}
-			ul li:first-child {
-				width: 100%;
-				margin-bottom: 1rem;
-				text-align: center;
-			}
-			ul li:first-child img {
-				width: 100%;
-			}
-			ul li:first-child .title {
-				font-size: 2.369rem;
-			}
-			ul li img {
-				margin-bottom: 0.5rem;
-				border-radius: 12px;
-			}
-			ul li a {
 				display: block;
 			}
-			.title {
-				margin: 0;
+			.post-list h2 {
+				margin: 0 0 0.35em;
+				font-size: 1.15em;
 				color: rgb(var(--black));
-				line-height: 1;
+				line-height: 1.45;
+				transition: color 0.15s ease;
 			}
-			ul li a:hover h4 {
-				color: rgb(var(--accent));
+			.post-list a:hover h2 {
+				color: var(--accent);
 			}
-			ul a:hover img {
-				box-shadow: var(--box-shadow);
+			.post-meta {
+				margin: 0 0 0.4em;
+				color: rgb(var(--gray));
+				font-size: 0.85em;
 			}
-			@media (max-width: 720px) {
-				ul {
-					gap: 0.5em;
-				}
-				ul li {
-					width: 100%;
-					text-align: center;
-				}
-				ul li:first-child {
-					margin-bottom: 0;
-				}
-				ul li:first-child .title {
-					font-size: 1.563em;
-				}
+			.post-meta .category::after {
+				content: '·';
+				margin: 0 0.5em;
+			}
+			.post-desc {
+				margin: 0;
+				color: rgb(var(--gray));
+				font-size: 0.92em;
+				line-height: 1.65;
+			}
+			.empty {
+				color: rgb(var(--gray));
+			}
+			.page-clock {
+				margin-top: 4em;
+				text-align: center;
 			}
 		</style>
 	</head>
 	<body>
 		<Header />
 		<main>
-			<section>
-				<ul>
-					{
-						posts.map((post) => (
+			{
+				posts.length === 0 ? (
+					<p class="empty">还没有文章。</p>
+				) : (
+					<ul class="post-list">
+						{posts.map((post) => (
 							<li>
 								<a href={`/blog/${post.id}/`}>
-									{post.data.heroImage && (
-										<Image width={720} height={360} src={post.data.heroImage} alt="" />
-									)}
-									<h4 class="title">{post.data.title}</h4>
+									<h2>{post.data.title}</h2>
+									<p class="post-meta">
+										{post.data.category && <span class="category">{post.data.category}</span>}
+										<FormattedDate date={post.data.pubDate} />
+									</p>
+									<p class="post-desc">{post.data.description}</p>
 								</a>
 							</li>
-						))
-					}
-				</ul>
-			</section>
+						))}
+					</ul>
+				)
+			}
 			<div class="page-clock"><Clock /></div>
 		</main>
 		<Footer />
